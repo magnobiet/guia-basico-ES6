@@ -1,8 +1,8 @@
 # Guia básico de ES6 (ECMAScript 2015)
 
-Em junho de 2015 a [Ecma International](https://en.wikipedia.org/wiki/Ecma_International) finalizou a sexta versão da linguagem de programação ECMAScript  (popularmente chamado de JavaScript). O objetivo deste guia é mostrar as principais features desse update junto com exemplos capazes de ilustrar seu uso.
+Em junho de 2015 a [Ecma International](https://en.wikipedia.org/wiki/Ecma_International) finalizou a sexta versão da linguagem de programação ECMAScript  (popularmente chamado de JavaScript). O objetivo deste guia é mostrar as principais features desse update junto com maneiras de configurar um ambiente de desenvolvimento que habilite seu uso em produção.
 
-> Sinta-se livre para contribuir com o projeto!
+> Sinta-se livre para contribuir com o projeto! Sugestões e PRs são sempre bem vindos!
 
 ## Suporte Atual
 
@@ -10,21 +10,21 @@ Por ser uma tecnologia nova o ES6 não funciona nativamente em todos os browsers
 
 ## Dando suporte a navegadores antigos
 
-Olhando dados atuais (final de 2016) uma boa parte dos usuários ainda utiliza browsers que não implementaram o ES6 por completo, mas, para nossa a comunidade JavaScript criou uma série de ferramentas (transpilers) que possibilitam a conversão de JavaScript moderno para uma sintaxe mais antiga. O transpiler mais usado no momento é o Babel (anteriormente conhecido como 6to5).
+Olhando dados atuais (final de 2016) uma boa parte dos usuários ainda utiliza browsers que não implementaram o ES6 por completo. Mas felizmente a comunidade JavaScript criou uma série de ferramentas (transpilers) que possibilitam a conversão de JavaScript moderno para uma sintaxe mais antiga (geralmente ECMAScript 5). O transpiler mais usado no momento é o Babel (anteriormente conhecido como 6to5).
 
 ## Babel
 
-O [Babel](https://babeljs.io/) é um programa que transforma JavaScript na sua sintaxe mais recente para ES5, seu funcionamento é bastante similar ao que é feito em linguagens como [TypeScript](https://www.typescriptlang.org/) e [CoffeeScript](http://coffeescript.org/). No começo do projeto o Babel era chamado 6to5, mas como hoje em dia o projeto suporte features do ES7+ foi necessária a mudança para um nome mais apropriado.
+O [Babel](https://babeljs.io/) é um programa que transforma JavaScript na sua sintaxe mais recente para ES5, seu funcionamento é bastante similar ao que é feito em linguagens como [TypeScript](https://www.typescriptlang.org/) e [CoffeeScript](http://coffeescript.org/). No passado o Babel era chamado de 6to5, mas pelo fato de hoje em dia o projeto suportar features do ES7+ foi necessária a mudança para um nome mais apropriado.
 
 ### ES5, ES6, ES2015, ES2016, ESNext, ECMAScript Proposals?
 
-Um dos grandes problemas da linguagem era que a sua evolução se dava de forma muito lenta (o ES5 por exemplo foi introduzido em 2009), uma das formas de sanar esta dificuldade foi começar a criar pequenos updates anuais que seriam nomeados com o ano em que a especificação final foi liberada ao invés do padrão antigo de versões seguindo uma ordem numérica simples. Além disso todas as mudanças que ainda não possuem uma especificação final são classificadas como ECMAScript Proposals.
+Um dos grandes problemas da linguagem era que a sua evolução se dava de forma muito lenta (o ES5 por exemplo foi introduzido em 2009). Uma das maneiras de sanar esta dificuldade encontrada pelo time de desenvolvimento do Javascript foi começar a criar pequenos updates anuais que seriam nomeados com o ano em que a especificação final foi liberada ao invés do padrão antigo, de versões seguindo uma ordem numérica simples. Além disso todas as mudanças que ainda não possuem uma especificação final são classificadas como ECMAScript Proposals.
 
-Como esta proposta foi dada quando já se falava sobre ES6 o novo nome não teve uma adesão tão grande, assim como nós chamamos ECMAScript de JavaScript, neste guia ES2015 e ES2016 serão chamados de ES6 e ES7, respectivamente.
+Como esta proposta foi dada quando já se falava sobre ES6, o novo nome não teve uma adesão muito grande logo. Assim como nós chamamos ECMAScript de JavaScript, neste guia ES2015 e ES2016 serão chamados de ES6 e ES7, respectivamente.
 
 ## Testando o Babel
 
-Nós podemos brincar com o Babel online [nesta url](http://babeljs.io/repl/), o que é ótimo para ter uma certa noção do código que é gerado, sem a necessidade de montar um ambiente de desenvolvimento que suporte Babel. Por exemplo um código ES6 assim:
+Nós podemos brincar com o [Babel online](http://babeljs.io/repl/), o que é ótimo para ter uma certa noção do código que é gerado com a ferramenta, sem a necessidade de montar um ambiente de desenvolvimento que a suporte. Por exemplo no Babel online um código ES6 assim:
 
 ```javascript
 const hello = 'Hello world!';
@@ -44,11 +44,11 @@ console.log(hello);
 
 ## Montando um ambiente de desenvolvimento com Babel
 
-Atualmente o Babel deixou de dar suporte ao babel-standalone o seu projeto que permitia usá-lo apenas colocando uma biblioteca .js em uma tag script. Atualmente devemos usar alguma ferramenta para gerenciar o processo de conversão, neste guia daremos suporte ao Webpack. [Para outras ferramentas veja a documentação oficial do projeto](http://babeljs.io/docs/setup/#installation).
+Atualmente o Babel deixou de dar suporte ao babel-standalone o seu projeto que permitia usá-lo apenas colocando uma biblioteca .js em uma tag `<script>`. Hoje em dia devemos usar uma ferramenta para gerenciar o processo de conversão, neste guia daremos suporte ao Webpack. [Para outras ferramentas veja a documentação oficial do projeto](http://babeljs.io/docs/setup/#installation).
 
 ## Webpack
 
-O webpack é um ***module bundler***, um programa que serve para juntar vários recursos da sua aplicação em um só, assim como o [browserfy](http://browserify.org/). A vantagem o webpack sobre outras ferramentas é que com ele na maioria dos casos nós não precisamos usar um software como gulp ou grunt para fazer o processo de build da nossa aplicação. O webpack usa um arquivo que guarda todas as informações a respeito do que deve ser feito com os assets chamado de [webpack.config.js](https://webpack.github.io/docs/configuration.html).
+O webpack é um ***module bundler***, um programa que serve para juntar vários recursos da sua aplicação em um só, assim como o [browserfy](http://browserify.org/). A vantagem do webpack sobre outras ferramentas é que na maioria dos casos nós não precisamos usar um software como gulp ou grunt para fazer o processo de build da nossa aplicação. O webpack usa um arquivo que guarda todas as informações a respeito do que deve ser feito com os seus recursos chamado de [webpack.config.js](https://webpack.github.io/docs/configuration.html).
 
 ### Tutorial básico de webpack
 
@@ -58,20 +58,20 @@ Para instalar o webpack globalmente abra o seu terminal e digite:
 npm install webpack -g
 ```
 
-Crie um diretório para guardar o seu projeto e outro chamado **js** para guardar o javascript. Dentro desse diretório inicie um novo projeto node.js com:
+Crie um diretório para guardar o seu projeto e dentro dele, crie outro chamado **js** para guardar o JavaScript. Dentro do diretório principal do projeto inicie o node.js com:
 
 ```bash
 npm init
 ```
+>Como bons desenvolvedores front end moderninhos, nós iremos usar o npm para gerenciar nossas dependências. [Aprenda mais sobre o assunto aqui](http://blog.npmjs.org/post/101775448305/npm-and-front-end-packaging)
 
-crie um arquivo chamado **index.js**
-Dentro de index vamos colocar um código qualquer, por exemplo:
+Crie um arquivo chamado **index.js**. Dentro de index.js vamos colocar um código qualquer, por exemplo:
 
 ```javascript
 console.log('Olá mundo!');
 ```
 
-Também vamos criar um **index.html** que chamar o nosso JavaScript gerado pelo webpack:
+Também vamos criar um **index.html** que irá chamar o nosso JavaScript gerado pelo webpack:
 
 ```html
 <!DOCTYPE html>
@@ -133,21 +133,23 @@ O código pode parecer meio complicado agora, então vamos por partes:
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-	]: **Aplica o UglifyJs para mimificar nosso código se não estivermos em desenvolvimento.**
+	]: **Aplica o UglifyJs para minificar nosso código se não estivermos em desenvolvimento.**
 
-Agora que nós temos um arquivo de configuração, podemos rodar o webpack novamente e ver os resultados, No terminal digite:
+Agora que nós temos um arquivo de configuração, podemos rodar o webpack novamente e ver os resultados. No terminal digite:
 
 ```bash
 NODE_ENV=production webpack --watch
 ```
 
-Se tudo ocorreu como planejado teremos um arquivo build.min.js com o código da nossa aplicação mimificado!
+>Nós usamos NODE_ENV=production para indicar ao node que estamos em ambiente de produção, desta forma o webpack pode rodar o Uglify antes de montar a build.
+
+Se tudo ocorreu como planejado teremos um arquivo build.min.js com o código da nossa aplicação minificado!
 
 **CommonJS**
 
 O objetivo disso tudo obviamente é poder criar vários arquivos .js e no final juntá-los em um só, agora nós podemos fazer isso facilmente.
 
-Crie um arquivo chamado **olamundo.js** e coloque o nosso olá mundo que estava em app nele:
+Crie um arquivo chamado **olamundo.js** e transfira o que estava em app.js:
 
 ```javascript
 console.log('Olá mundo!');
@@ -159,18 +161,18 @@ Crie outro arquivo chamado **adeusmundo.js** e coloque:
 console.log('Adeus mundo!');
 ```
 
-Agora nos vamos chamar os dois arquivos indo pra app.js e fazendo:
+Agora nós vamos chamar os dois arquivos indo pra app.js e fazendo:
 
 ```javascript
 require('./olamundo.js');
 require('./adeusmundo.js');
 ```
 
-Se abrirmos o index.html vamos ver que build possui o código tanto de adeus quanto de olá, como mágica! Tudo isso acontece graças ao CommonJS, um formato que também é usado no node para criação de modulos. Também vemos que não foi preciso rodar o webpack novamente, isso porque o comando --watch dado do exemplo passado, faz com que o webpack rode automaticamente toda vez que ocorra alguma mudança nos arquivos.
+Se abrirmos o index.html vamos ver que build possui o código tanto de adeus quanto de olá! Tudo isso acontece graças ao CommonJS, um formato que também é usado no node para criação de módulos. Também vemos que não foi preciso rodar o webpack novamente, isso porque o comando --watch dado do exemplo passado, faz com que o webpack rode automaticamente toda vez que ocorra alguma mudança nos arquivos.
 
 **Webpack dev server**
 
-O webpack também oferece um servidor de desenvolvimento, para instalá-lo digite:
+O webpack também oferece um pequeno servidor de arquivos estáticos para desenvolvimento. Você pode instalá-lo com:
 
 ```bash
 npm install webpack-dev-server -g
@@ -182,19 +184,17 @@ E depois rode com:
 webpack-dev-server
 ```
 
-Se formos para http://localhost:8080/ podemos ver o nosso projeto rodando em um servidor web, a melhor parte disso é que com o comando:
+Se formos para http://localhost:8080/ podemos ver o nosso projeto rodando em um servidor web. A melhor parte disso é que com o comando abaixo, podemos programar normalmente e deixar o webpack-dev-server dar o refresh na página de forma automática.
 
 ```bash
 webpack-dev-server --inline --hot
 ```
 
-Podemos programar normalmente e deixar o webpack-dev-server dar o refresh na página de forma automática.
-
 ### Adicionando o Babel no seu webpack.config
 
 Com a configuração que nós temos agora ainda é impossível usar ES6 e dar suporte a navegadores antigos, para isso temos que adicionar o Babel ao nosso projeto com webpack.
 
-Primeiramente vamos instalar o Babel e as suas dependências:
+Primeiramente vamos instalar o Babel e suas dependências:
 
 ```bash
 npm install babel-core babel-loader node-libs-browser babel-preset-es2015 babel-plugin-transform-decorators-legacy babel-plugin-transform-class-properties babel-preset-stage-0 --save-dev
@@ -252,7 +252,7 @@ module: {
 }
 ```
 
-Vamos entender o que cada coisa nesse exemplo faz:
+Vamos entender o que cada configuração nesse exemplo faz:
 
 * test: /\.js?$/: **Procura por todos os arquivos que terminam em .js...**
 * exclude: /(node_modules|bower_components)/: **...todos menos os que estão em node_modules ou em bower_components(aka bibliotecas externas)**
@@ -262,10 +262,10 @@ Vamos entender o que cada coisa nesse exemplo faz:
 						 plugins: ['transform-decorators-legacy', 'transform-class-properties'],
 					 }: **oferece suporte ao es6, e a algumas features mais modernas como decorators e class properties**
 
-Pronto! Agora nós temos um ambiente capaz de usar o ES6 em produção :-)
+Pronto! Agora nós temos um ambiente capaz de usar o ES6 em produção. :-)
 
 ## Introdução ao ES6
-Ok depois dessa longa introdução, estamos prontos para começar a programar em ECMAScript 6. A partir de agora o tutorial será composto de pequenos exemplos com o objetivo de explicar algumas features da linguagem.
+Ok, depois de montar um ambiente estamos prontos para começar a programar em ECMAScript 6. Apartir de agora o tutorial será composto de pequenos exemplos com o objetivo de explicar algumas features da linguagem.
 
 ### Declarando variáveis em ES5
 Nas versões anteriores do JavaScript podíamos declarar valores de duas formas:
@@ -285,7 +285,7 @@ foo();
 console.log(x); // vai mostrar 10 na tela
 ```
 
-O exemplo acima mostra como declarar variáveis dessa forma é uma má ideia, variáveis globais na maioria dos casos são algo bem ruim. Imagine uma aplicação onde um valor global é atualizado várias vezes e em várias funções diferentes, se houver um bug relacionado a este valor especifico, como vamos saber onde está a origem da falha? Em um projeto grande esse processo vai ser uma imensa perda de tempo, dificultando o trabalho do encarregado de dar manutenção no código. Como regra geral **não use variáveis globais**.
+O exemplo acima mostra como declarar variáveis dessa forma é uma má ideia. Variáveis globais na maioria dos casos são algo bem ruim. Imagine uma aplicação onde um valor global é atualizado várias vezes e em várias funções diferentes. Se tivermos um bug relacionado a este valor específico, como vamos saber onde está a origem da falha? Em um projeto grande esse processo vai ser uma imensa perda de tempo, dificultando o trabalho do encarregado de dar manutenção no código. Como regra geral **não use variáveis globais**.
 
 ***Para resolver este problema podemos colocar 'use strict' no topo do nosso código. Ex.:***
 
@@ -301,7 +301,7 @@ foo();
 console.log(x); // ERRO: assignment to undeclared variable x
 ```
 
-Ok mas e o **var**?Bem, usando **var** nós podemos evitar o escopo global logo:
+Ok mas e o **var**? Bem, usando **var** nós podemos evitar o escopo global logo:
 
 ```javascript
 function foo() {
@@ -311,7 +311,7 @@ foo();
 console.log(x); // ReferenceError: x is not defined
 ```
 
-**var** parece uma opção muito boa, porém ele funciona de uma forma um diferente do esperado:
+**var** parece uma opção muito boa, porém ele funciona de uma forma um pouco diferente do esperado:
 
 ```javascript
 function foo() {
@@ -342,11 +342,13 @@ console.log(pi);
 pi = 10; // ERRO
 ```
 
-Constantes facilitam bastante o entendimento de um código, já que nós podemos ter certeza que um determinado valor nunca vai mudar depois de ser definido. ***Use const sempre que poder.***
+Constantes facilitam bastante o entendimento de um código, já que nós podemos ter certeza que um determinado valor nunca vai mudar depois de ser definido. ***Use const sempre que possível.***
+
+> Algumas pessoas preferem seguir a tradição das linguagens inspiradas por C e escrever constantes em MACRO_CASE ao invés do camelCase usado em variáveis para deixar bem claro que o valores não podem ser alterados, pessoalmente eu acredito que como tentativas de alterar consts vão causar um erro de sintaxe não usar um padrão diferente é desnecessário ;)
 
 #### Maaass...não é tudo uma maravilha :(
 
-Constante em ES6 **não são realmente imutáveis**, **é possível criar um objeto com const e alteras seus valores**:
+Constantes em ES6 **não são realmente imutáveis**. Objetos criados com const podem ter seus valores alterados:
 
 ```javascript
 const paises = {
@@ -395,6 +397,26 @@ console.log(paises.africaDoSul.a); // Brasilia :(
 
 [A documentação da MDN possui uma gambiarra que resolve isso chamada deepFreeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze).
 
+### Immutable.js
+Para melhorar o suporte à imutabilidade no JavaScript o Facebook desenvolveu uma lib chamada [Immutable.js](https://facebook.github.io/immutable-js/). Com Immutable nós podemos usar uma série de estruturas de dados imutáveis.
+Ex.:
+```javascript
+const Immutable = require('immutable');
+const paises = Immutable.Map({
+	brasil: 'Rio de Janeiro',
+	eua: 'Washington',
+	portugal: 'Lisboa',
+});
+const novosPaises = paises.set('brasil', 'Brasilia');
+paises.get('brasil'); // 'Rio de Janeiro'
+novosPaises.get('brasil'); // 'Brasilia'
+```
+Obviamente, criar uma copia de um objeto inteiro sempre que quisermos fazer alguma alteração pode afetar a performance da nossa webapp. Para resolver isso o Immutable implementa [persistent data structures](https://en.wikipedia.org/wiki/Persistent_data_structure), basicamente toda vez que existe uma alteração o Immutable cria uma estrura nova apenas para a parte do objeto que foi alterada e insere uma referência da estrutura nova na estrutura antiga.Ex.:
+
+![Ilustração do funcionamento do Immutable](https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Purely_functional_tree_after.svg/438px-Purely_functional_tree_after.svg.png)
+
+Aprenda mais sobre Immutable [aqui](http://www.zsoltnagy.eu/introduction-to-immutable-js/) e [aqui](https://facebook.github.io/immutable-js/docs/#/)
+
 **let**
 
 O let funciona de forma semelhante ao var, mas respeitando o escopo em que foi declarado:
@@ -410,7 +432,7 @@ Obviamente, ainda podemos usar var em ES6.
 
 ### IIFEs
 
-IIFEs ou ***Immediately Invoked Function Expressions*** são expressões que são executadas assim que são definidas, elas ajudam a criar um escopo mais "privado" no seu código:
+IIFEs ou ***Immediately Invoked Function Expressions*** são expressões que são executadas assim que são definidas. Elas ajudam a criar um escopo mais "privado" no seu código:
 
 ```javascript
 (function() {
@@ -456,6 +478,22 @@ Ou ainda:
 const hey = () => console.log('hey');
 ```
 
+Usando a sintaxe `() => foo;` estamos implicitamente definindo o *return* da função:
+
+```javascript
+const nome = () => 'Lucas';
+
+console.log(nome());// Lucas
+```
+
+Se a função tiver um argumento os podemos omitir os parenteses:
+
+```javascript
+const falaAe = menssagem => menssagem;
+
+console.log(falaAe('Olá mundo!')); //Olá mundo!
+```
+
 **arrow functions e this**
 
 A melhor parte das arrow functions é que elas guardam o contexto this do seu valor léxico. Em ES5 nós tínhamos problemas do tipo:
@@ -475,7 +513,7 @@ var af = new AfricaDoSul('As capitais da Africa do Sul são');
 af.mostraCapitais(['Pretória', 'Cidade do Cabo', 'Bloemfontein']);
 ```
 
-Não podemos ter acesso ao this em mostraCapitais porque ele não está no mesmo contexto do construtor da classe AfricaDoSul, para resolver isso nós podemos usar o método bind para conectar o contexto:
+Não podemos ter acesso ao this em mostraCapitais porque ele não está no mesmo contexto do construtor da classe AfricaDoSul. Para resolver isso nós podemos usar o método bind para conectar o contexto:
 
 ```javascript
 function AfricaDoSul(intro) {
@@ -590,7 +628,7 @@ joao.morre();
 
 ### No final ainda é prototype
 
-JavaScript não oferece orientação a objetos clássica como Java, em JavaScript não existem classes, nós definimos funções ou objetos e podemos expandi-los depois de sua criação. Ex:
+JavaScript não oferece orientação a objetos clássica como Java. Em JavaScript não existem classes, nós definimos funções ou objetos e podemos expandi-los depois de sua criação. Ex:
 
 ```javascript
 function AfricaDoSul(intro) {
@@ -608,7 +646,7 @@ AfricaDoSul.prototype.mostraCapitais = function(lista) {
 };
 ```
 
-Mesmo que incialmente pareça uma ideia bizarra comparando com a POO clássica, POO com prototype é vista como uma forma de escrever classes mais simples, mais poderosas e menos redundantes. [Veja mais sobre o assunto aqui](http://stackoverflow.com/questions/2800964/benefits-of-prototypal-inheritance-over-classical).
+Mesmo que inicialmente pareça uma ideia bizarra comparando com a POO clássica, POO com prototype é vista como uma forma de escrever classes mais simples, mais poderosas e menos redundantes. [Veja mais sobre o assunto aqui](http://stackoverflow.com/questions/2800964/benefits-of-prototypal-inheritance-over-classical).
 
 > As classes do ES6 são só ***syntax sugar*** em cima das prototypes, ainda é necessário entender os conceitos por trás disso tudo e até mesmo usar a sintaxe antiga.
 
@@ -635,7 +673,7 @@ console.log(_nome.get(this)); // undefined
 
 ### Maps
 
-Maps (também conhecidos como hashmaps ou hashs) são uma estrutura de dados que armazena valores em um formato de chave(key) e valor(value). Ex:
+Maps (também conhecidos como hashmaps ou hashs) são uma estrutura de dados que armazenam valores em um formato de chave (key) e valor (value). Ex:
 
 ```javascript
 'use strict';
@@ -691,7 +729,7 @@ Em ES5 verificamos se uma string é substring de outra usando **indexOf**:
 
 ```javascript
 var comida = 'tapioca';
-var isSubstring = comida.indexOf('tap', -1) > -1; // se o resultado é > -1 que é substrig
+var isSubstring = comida.indexOf('tap', -1) > -1; // indexOf returna a posição de uma string em outra, se nada for achado ele retorna -1
 console.log(isSubstring); // true
 ```
 
@@ -739,7 +777,7 @@ const comida = `oi
 				tudo bem?`;
 ```
 
-Template literals também oferecem interpolação de valores, parecido com o que existe no ruby:
+Template literals também oferecem interpolação de valores, parecido com o que existe no Ruby:
 
 ```javascript
 const diaDaSemana = 'sexta-feira!';
@@ -791,7 +829,7 @@ console.log(brasil); // Brasilia
 console.log(eua); // DC
 ```
 
-### Modulos
+### Módulos
 
 Lembra do CommonJS (require) que nós vimos quando estávamos montando nosso ambiente com webpack? O ES6 trás a mesma feature nativamente com a keyword **import**
 
@@ -807,7 +845,7 @@ export function foo() {
 }
 ```
 
-Imaginando que o exemplo anterior foi salvo em um arquivo tapioca.js podemos usar o modulo tapioca em outro arquivo assim:
+Imaginando que o exemplo anterior foi salvo em um arquivo tapioca.js podemos usar o módulo tapioca em outro arquivo assim:
 
 ```javascript
 import * as tapioca from './tapioca.js';
@@ -816,7 +854,7 @@ console.log(tapioca.comida); // tapioca
 console.log(tapioca.foo()); // tapioca da boa
 ```
 
-Também é possivel pegar importar de forma separada:
+Também é possivel importar de forma separada:
 
 ```javascript
 import comida tapioca from './tapioca.js';
@@ -827,7 +865,7 @@ console.log(tapioca.foo()); // ERRO
 
 ***Export default***
 
-Podemos usar a keyword **default** para definir o que deve ser retornado por padrão no nosso modulo, é sempre uma boa ideia retornar apenas uma coisa no módulo dessa forma deixando explicito o que será exposto publicamente. Ex:
+Podemos usar a keyword **default** para definir o que deve ser retornado por padrão no nosso módulo. É sempre uma boa ideia retornar apenas uma coisa no módulo dessa forma deixando explicito o que será exposto publicamente. Ex:
 
 ```javascript
 const comida = 'tapioca';
@@ -836,7 +874,7 @@ const preco = 1.0;
 function foo() {
 	return `tapioca da boa só ${preco} real`;
 }
-export defailt
+export default
 const api = {
 	comida,
 	foo
@@ -862,7 +900,7 @@ tapioca.foo();
 
 ### Parâmetros opcionais
 
-No ES5 se fosse necessário cria uma função com parâmetros opcionais, teríamos que usar a seguinte gambiarra:
+No ES5 se fosse necessário criar uma função com parâmetros opcionais, teríamos que usar a seguinte gambiarra:
 
 ```javascript
 function comida(nome) {
@@ -887,7 +925,7 @@ console.log(comida('pizza')); //pizza
 
 ### Parâmetros Rest
 
-Se tivermos uma função com um número de indefinido de parâmetros devemos fazer o seguinte em ES5:
+Se tivermos uma função com um número indefinido de parâmetros devemos fazer o seguinte em ES5:
 
 ```javascript
 function capitais() {
@@ -939,7 +977,7 @@ console.log(capitaisCompletas); // Array [ 'Pretória', 'Cidade do Cabo', 'Bloem
 
 ### Promises
 
-Em ES5 nós usávamos callbacks (funções passadas como argumento de outra função), isso podia gerar código assim:
+Em ES5 nós usávamos callbacks (funções passadas como argumento de outra função). Isso podia gerar código assim:
 
 ```javascript
 func1(function(value1) {
@@ -971,7 +1009,7 @@ Diversas bibliotecas como a [bluebird](https://github.com/petkaantonov/bluebird)
 
 **Criando promises**
 
-Promises possuem dois **handlers** resolve(para quando a promise não retorna nenhuma exception) e reject (para quando a promise retorna uma exception):
+Promises possuem dois **handlers**: resolve(para quando a promise não retorna nenhuma exception) e reject (para quando a promise retorna uma exception):
 
 ```javascript
 import $ from 'jquery';
@@ -988,11 +1026,11 @@ const urls = [
 const promises = urls.map((url) => {
 	return new Promise((resolve, reject) => {
 		$.ajax({
-				url: url
-			})
-			.done((data) => {
-				resolve(data);
-			});
+			url: url
+		})
+		.done((data) => {
+			resolve(data);
+		});
 	});
 });
 
@@ -1002,11 +1040,11 @@ Promise.all(promises)
 	});
 ```
 
-> No exemplo anterior estamos usando o jQuery($) pra fazer requisições AJAX não se esqueça que podemos instalar bibliotecas externas com a ajuda do npm mesmo no front end. Para instalar o jQuery no nosso projeto webpack simplemente use **npm install jquery --save**
+> No exemplo anterior estamos usando o jQuery($) pra fazer requisições AJAX. Não se esqueça que podemos instalar bibliotecas externas com a ajuda do npm mesmo no front end. Para instalar o jQuery no nosso projeto webpack simplemente use **npm install jquery --save**
 
 ### Generators
 
-Outra forma de evitar o callback hell são os generators, eles são funções que podem ser "pausadas" durante sua execução.
+Outra forma de evitar o callback hell são os generators. Eles são funções que podem ser "pausadas" durante sua execução.
 
 ```javascript
 function* capitais() {
@@ -1061,7 +1099,7 @@ Veja que async é a maneira mais fácil e limpa de fazer códigos assíncronos c
 
 ## E agora?
 
-O passo mais importante para dominar uma nova linguagem é praticar, agora que você tem uma noção do básico de ECMAScript 6 tente converter projetos antigos ou crie projetos novos do zero, veja como você pode usar o ES6 no seu cotidiano para resolver problemas reais.
+O passo mais importante para dominar uma nova linguagem é praticar. Agora que você tem uma noção do básico de ECMAScript 6, tente converter projetos antigos ou crie projetos novos do zero. Veja como você pode usar o ES6 no seu cotidiano para resolver problemas reais.
 
 ## Se aprofundando
 
